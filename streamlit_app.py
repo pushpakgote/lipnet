@@ -102,7 +102,14 @@ if options:
         gif_name=f"animation_{selected_video_name}.gif"
         mouth_frames=vid.mouth
         imageio.mimsave(gif_name,mouth_frames.astype(np.uint8) ,duration=1/30)
-        st.image(gif_name,width=300)
+        #st.image(gif_name,width=300)
+
+        with open(gif_name, 'rb') as f:
+            contents=f.read()
+        data_url = base64.b64encode(contents).decode("utf-8")
+        st.markdown(f'<img src="data:image/gif;base64,{data_url}" alt="lips gif">',
+                    unsafe_allow_html=True,
+                )
 
         print(os.listdir(path))
  

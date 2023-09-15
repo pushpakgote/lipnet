@@ -104,7 +104,7 @@ if options:
         imageio.mimsave(gif_name,mouth_frames.astype(np.uint8) ,duration=1/30)
         st.image(gif_name,width=300)
 
-        os.system("ls")
+        print(os.listdir(path))
  
         #st.image("animation.gif",width=300)
 

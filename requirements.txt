@@ -1,4 +1,4 @@
-urllib3<2.0
+urllib3==1.26.16
 numpy==1.25.2
 opencv-python==4.8.0.76
 scikit-image==0.21.0

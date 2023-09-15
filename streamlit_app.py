@@ -103,6 +103,8 @@ if options:
         mouth_frames=vid.mouth
         imageio.mimsave(gif_name,mouth_frames.astype(np.uint8) ,duration=1/30)
         st.image(gif_name,width=300)
+
+        os.system("ls")
  
         #st.image("animation.gif",width=300)
 

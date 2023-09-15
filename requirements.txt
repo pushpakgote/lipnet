@@ -1,4 +1,5 @@
 opencv-python-headless
+scikit-image==0.21.0
 imageio
 numpy==1.24.3
 tensorflow

@@ -68,11 +68,12 @@ selected_video = st.selectbox('Choose video', options)
 selected_video_name=selected_video.split('.')[0]
 selected_align=os.path.join(path,'streamlit_dataset', 'data', 'allignments','s1',f"{selected_video_name}.align")
 selected_video=os.path.join(path,'streamlit_dataset', 'data', 's1', selected_video)
+selected_numpy=os.path.join(path,'streamlit_dataset', 'data', 'extracted_mouth_3_channels_rgb', f"{selected_video_name}.npy")
 
 print(selected_video)
 print(selected_align)
 
-vid=video.from_video(selected_video)
+vid=video.from_numpy_frames(selected_video)
 
 # Generate two columns 
 col1, col2 ,col3 = st.columns(3)

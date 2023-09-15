@@ -46,7 +46,7 @@ st.markdown(
 with st.sidebar: 
     st.image("lipnet_image.png")
     st.markdown("<h1 style='text-align: center;'>LipNet</h1>", unsafe_allow_html=True)
-    st.info("This project aims to predict what a person is saying by just looking at images")
+    st.info("This project aims to predict what a person is saying by just looking at video")
     st.info("For full code, head on to [@pushpakgote/lipnet](https://github.com/pushpakgote/lipnet)")
     
     st.markdown(

@@ -112,17 +112,6 @@ if options:
         
         st.image(gif_name,width=300)
 
-        #with open(gif_name, 'rb') as f:
-        #    contents=f.read()
-        #data_url = base64.b64encode(contents).decode("utf-8")
-        #st.markdown(f'<img src="data:image/gif;base64,{data_url}" alt="lips gif">',
-        #            unsafe_allow_html=True,
-        #        )
-
-        #print(os.listdir(path))
- 
-        #st.image("animation.gif",width=300)
-
         st.info("Extract lips from each frame of the face and normalize them")
         st.info("Collection of 75 such frames is given as input to model")
 

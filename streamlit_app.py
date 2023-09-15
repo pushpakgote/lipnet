@@ -73,7 +73,8 @@ selected_numpy=os.path.join(path,'streamlit_dataset', 'data', 'extracted_mouth_3
 print(selected_video)
 print(selected_align)
 
-vid=video.from_numpy_frames(selected_video)
+#vid=video.from_video(selected_video)
+vid=video.from_numpy_frames(selected_numpy)
 
 # Generate two columns 
 col1, col2 ,col3 = st.columns(3)

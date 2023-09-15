@@ -1,4 +1,4 @@
-opencv-python
-tensorflow
+opencv-python-headless
 imageio
 numpy==1.24.3
+tensorflow

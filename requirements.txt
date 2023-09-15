@@ -4,4 +4,5 @@ scikit-image==0.21.0
 sk-video==1.1.10
 dlib-bin
 Pillow==9.5.0
+protobuf==3.19.*
 tensorflow

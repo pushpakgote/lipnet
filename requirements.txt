@@ -5,4 +5,3 @@ sk-video==1.1.10
 dlib==19.24.2
 Pillow==9.5.0
 tensorflow
-streamlit

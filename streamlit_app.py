@@ -102,7 +102,8 @@ if options:
 
         st.header("Processing Input")
 
-        gif_name=f"animation_{selected_video_name}.gif"
+        #gif_name=f"animation_{selected_video_name}.gif"
+        gif_name="animation.gif"
         mouth_frames=vid.mouth
         
         # Normalized and convert float32 frames to uint8

@@ -104,7 +104,12 @@ if options:
 
         gif_name=f"animation_{selected_video_name}.gif"
         mouth_frames=vid.mouth
-        imageio.mimsave(gif_name,mouth_frames.astype(np.uint8) ,duration=1/30)
+        
+        # Normalized and convert float32 frames to uint8
+        frames_normalized = (mouth_frames - np.min(mouth_frames)) / (np.max(mouth_frames) - np.min(mouth_frames))
+        frames_uint8 = (frames_normalized * 255).astype(np.uint8)
+        imageio.mimsave(gif_name, frames_uint8 ,duration=1/50)
+        
         st.image(gif_name,width=300)
 
         #with open(gif_name, 'rb') as f:

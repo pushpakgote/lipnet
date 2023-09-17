@@ -1,6 +1,6 @@
 # LipNet: Lipreading with Deep Learning
 
-### Checkout live implementation at [https://end2endlipnet.streamlit.app](https://end2endlipnet.streamlit.app) 
+#### Checkout live implementation at [https://end2endlipnet.streamlit.app](https://end2endlipnet.streamlit.app) 
 
 ![LipNet performing prediction (subtitle alignment only for visualization)](lipreading.gif)
 

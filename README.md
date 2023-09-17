@@ -42,7 +42,7 @@ pip install -r requirements.txt
 ## Dataset
 This model is trained on one of the many datasets of the GRID corpus (http://spandh.dcs.shef.ac.uk/gridcorpus/)
 
-For data prepatation steps go through [full_lipnet_notebook.ipynb](https://github.com/pushpakgote/lipnet/blob/main/full_lipnet_notebook.ipynb) 
+For dataset used and data prepatation steps go through [full_lipnet_notebook.ipynb](https://github.com/pushpakgote/lipnet/blob/main/full_lipnet_notebook.ipynb) 
 
 ## Pre-trained weights
 You can download and use the weights provided here: https://github.com/pushpakgote/lipnet/tree/main/saved_weights. 

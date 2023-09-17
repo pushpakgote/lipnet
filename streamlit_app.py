@@ -102,7 +102,6 @@ if options:
 
         st.header("Processing Input")
 
-        #gif_name=f"animation_{selected_video_name}.gif"
         gif_name="animation.gif"
         mouth_frames=vid.mouth
         
@@ -123,7 +122,8 @@ if options:
 
         #Preprocessing input
         frames=vid.data
-        frames=frames[np.newaxis,...]/255
+        frames=tf.cast(frames/255, tf.float32)
+        frames=tf.expand_dims(frames,0)
 
         #Loading Model
         lipnet = LipNet()
@@ -131,11 +131,10 @@ if options:
 
         #Predicting Output
         ypred=lipnet.model.predict(frames)
-        predicted_align=decoder.decode(ypred,[75])[0]
+        predicted_align=decoder.decode(ypred,[75]*len(ypred))[0]
 
         st.write(' ')
         st.write(' ')
-        #st.subheader(align.from_file(selected_align).sentence)
         st.subheader(predicted_align)
 
         st.write(' ')

@@ -101,21 +101,19 @@ total_videos=len(video_file_list)
 alignments_files_path=os.path.join(dataset_dir,'data','alignments','s1')
 alignments_files_list=glob.glob(os.path.join(alignments_files_path,'*.align'))
 
+#Extracted lips files
 numpy_files_dir_path=os.path.join(dataset_dir,'data','extracted_mouth_3_channels_rgb')
 numpy_files_list=glob.glob( os.path.join(numpy_files_dir_path,'*.npy') )
 #print(numpy_files_list)
 
-#Removing some files which are in wrong format, these files are of wrong dimensions
-#wrong_files=['d:\\projects\\lipnet\\dataset\\data\\extracted_mouth_3_channels_rgb\\bbizzn.npy', 'd:\\projects\\lipnet\\dataset\\data\\extracted_mouth_3_channels_rgb\\brwa4p.npy', 'd:\\projects\\lipnet\\dataset\\data\\extracted_mouth_3_channels_rgb\\brwg8p.npy', 'd:\\projects\\lipnet\\dataset\\data\\extracted_mouth_3_channels_rgb\\bwwuzn.npy', 'd:\\projects\\lipnet\\dataset\\data\\extracted_mouth_3_channels_rgb\\lgbf8n.npy', 'd:\\projects\\lipnet\\dataset\\data\\extracted_mouth_3_channels_rgb\\lrae3s.npy', 'd:\\projects\\lipnet\\dataset\\data\\extracted_mouth_3_channels_rgb\\lrarzn.npy', 'd:\\projects\\lipnet\\dataset\\data\\extracted_mouth_3_channels_rgb\\pbio7a.npy', 'd:\\projects\\lipnet\\dataset\\data\\extracted_mouth_3_channels_rgb\\pbwx1s.npy', 'd:\\projects\\lipnet\\dataset\\data\\extracted_mouth_3_channels_rgb\\prii9a.npy', 'd:\\projects\\lipnet\\dataset\\data\\extracted_mouth_3_channels_rgb\\sbbbzp.npy', 'd:\\projects\\lipnet\\dataset\\data\\extracted_mouth_3_channels_rgb\\sbbh4p.npy', 'd:\\projects\\lipnet\\dataset\\data\\extracted_mouth_3_channels_rgb\\sran9s.npy', 'd:\\projects\\lipnet\\dataset\\data\\extracted_mouth_3_channels_rgb\\srbb4n.npy', 'd:\\projects\\lipnet\\dataset\\data\\extracted_mouth_3_channels_rgb\\srwi5a.npy', 'd:\\projects\\lipnet\\dataset\\data\\extracted_mouth_3_channels_rgb\\swao7a.npy']
-wrong_files=['D:\\projects\\lipnet\\dataset\\data\\extracted_mouth_3_channels_rgb\\bbizzn.npy',  'D:\\projects\\lipnet\\dataset\\data\\extracted_mouth_3_channels_rgb\\brwa4p.npy',
- 'D:\\projects\\lipnet\\dataset\\data\\extracted_mouth_3_channels_rgb\\brwg8p.npy', 'D:\\projects\\lipnet\\dataset\\data\\extracted_mouth_3_channels_rgb\\bwwuzn.npy',
- 'D:\\projects\\lipnet\\dataset\\data\\extracted_mouth_3_channels_rgb\\lgbf8n.npy', 'D:\\projects\\lipnet\\dataset\\data\\extracted_mouth_3_channels_rgb\\lrae3s.npy',
- 'D:\\projects\\lipnet\\dataset\\data\\extracted_mouth_3_channels_rgb\\lrarzn.npy', 'D:\\projects\\lipnet\\dataset\\data\\extracted_mouth_3_channels_rgb\\pbio7a.npy',
- 'D:\\projects\\lipnet\\dataset\\data\\extracted_mouth_3_channels_rgb\\pbwx1s.npy', 'D:\\projects\\lipnet\\dataset\\data\\extracted_mouth_3_channels_rgb\\prii9a.npy',
- 'D:\\projects\\lipnet\\dataset\\data\\extracted_mouth_3_channels_rgb\\sbbbzp.npy', 'D:\\projects\\lipnet\\dataset\\data\\extracted_mouth_3_channels_rgb\\sbbh4p.npy',
- 'D:\\projects\\lipnet\\dataset\\data\\extracted_mouth_3_channels_rgb\\sran9s.npy', 'D:\\projects\\lipnet\\dataset\\data\\extracted_mouth_3_channels_rgb\\srbb4n.npy',
- 'D:\\projects\\lipnet\\dataset\\data\\extracted_mouth_3_channels_rgb\\srwi5a.npy', 'D:\\projects\\lipnet\\dataset\\data\\extracted_mouth_3_channels_rgb\\swao7a.npy']
 
+#Some images of extracted lips are of wrong dimensions, find and remove them from list
+wrong_files=[]
+for path in numpy_files_list:
+    with open(path,'rb') as f:
+        vid=np.load(f)
+    if vid.shape != (75,50,100,3):
+        wrong_files.append(path)
 
 for wrong_file in wrong_files:
     numpy_files_list.remove(wrong_file)
@@ -145,7 +143,7 @@ val_ds  =  val_ds.map(lambda video_path:tf.py_function(get_data,[video_path],[tf
 train_ds = configure_for_performance(train_ds)
 val_ds = configure_for_performance(val_ds)
 
-#Loading stored checkpoints and last epoch
+#Loading latest stored checkpoint and last epoch
 checkpoint_dir = os.path.join(path, 'saved_weights')
 try:
     latest_checkpoint = max(glob.glob(os.path.join(checkpoint_dir, 'checkpoint_*.h5')), key=os.path.getctime)

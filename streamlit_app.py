@@ -13,6 +13,12 @@ from helpers import text_to_labels,labels_to_text
 from lipnet_model import LipNet
 from decoder import Decoder
 
+@st.cache_resource
+def load_model():
+    lipnet = LipNet()
+    lipnet.model.load_weights(os.path.join(path,'saved_weights','checkpoint_350.h5'))
+    return lipnet
+
 download_face_predictor_model()
 path=os.getcwd()
 
@@ -126,8 +132,9 @@ if options:
         frames=tf.expand_dims(frames,0)
 
         #Loading Model
-        lipnet = LipNet()
-        lipnet.model.load_weights(os.path.join(path,'saved_weights','checkpoint_350.h5'))
+        #lipnet = LipNet()
+        #lipnet.model.load_weights(os.path.join(path,'saved_weights','checkpoint_350.h5'))
+        lipnet=load_model()
 
         #Predicting Output
         ypred=lipnet.model.predict(frames)

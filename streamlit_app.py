@@ -13,6 +13,7 @@ from helpers import text_to_labels,labels_to_text
 from lipnet_model import LipNet
 from decoder import Decoder
 
+# @st.cache_resource loads model only once instead of loading in every run which reduce time to make prediction.
 @st.cache_resource
 def load_model():
     lipnet = LipNet()

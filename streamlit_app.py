@@ -132,8 +132,6 @@ if options:
         frames=tf.expand_dims(frames,0)
 
         #Loading Model
-        #lipnet = LipNet()
-        #lipnet.model.load_weights(os.path.join(path,'saved_weights','checkpoint_350.h5'))
         lipnet=load_model()
 
         #Predicting Output
